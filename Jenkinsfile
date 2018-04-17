@@ -1,9 +1,12 @@
 pipeline {
     agent any 
     stages {
-        stage('Stage 1') {
+        stage('Build') {
             steps {
-                echo 'Hello world!' 
+                sh 'mkdir bin'
+                sh '/c/Program\ Files\ \(x86\)/Java/jdk1.8.0_111/bin/javac -d out -cp src src/uk/gov/snh/quote/Quote.java'
+                sh 'cd bin'
+                sh 'java uk/gov/snh/quote/Quote'
             }
         }
     }
