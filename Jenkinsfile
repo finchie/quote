@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mkdir bin'
-                sh 'javac -d out -cp src src/uk/gov/snh/quote/Quote.java'
+                sh 'javac -d bin -cp src src/uk/gov/snh/quote/Quote.java'
                 sh 'cd bin'
                 sh 'java uk/gov/snh/quote/Quote'
             }
