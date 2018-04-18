@@ -3,8 +3,6 @@
  */
 package uk.gov.snh.quote;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 
 /**
@@ -13,8 +11,7 @@ import java.util.Random;
  */
 public class Generator {
 	
-	private Queue<String> quotes;
-	private static final String[] quoteArray = {
+	static final String[] quotes = {
 			"Chuck Norris' tears cure cancer. Too bad he has never cried. Ever.",
 			"Chuck Norris does not sleep. He waits.",
 			"Chuck Norris is currently suing NBC, claiming Law and Order are trademarked names for his left and right legs.",
@@ -116,24 +113,21 @@ public class Generator {
 			"Little known medical fact: Chuck Norris invented the Caesarean section when he roundhouse-kicked his way out of his mother’s womb.",
 			"Chuck Norris can divide by zero."
 	};
+	private int index;
 	private Random random;
 
 	public Generator() {
-		quotes = new LinkedList<String>();
-		
-		for (String quote: quoteArray) {
-			quotes.add(quote);
-		}
+		index = 0;
 	}
 	
 	public String next () {
-		String quote = quotes.poll();
-		quotes.add(quote);
+		String quote = getQuoteAtIndex(index);
+		index = indexWrapAround(index + 1);
 		return quote;
 	}
 	
 	public String random () {
-		int index = getRandomIndex();
+		index = getRandomIndex();
 		return getQuoteAtIndex(index);
 	}
 	
@@ -141,17 +135,15 @@ public class Generator {
 		if (random == null ) {
 			random = new Random();
 		}		
-		return random.nextInt(Generator.quoteArray.length);
+		return random.nextInt(Generator.quotes.length);
 	}
 	
 	String getQuoteAtIndex(int index) {
-		String quote;
-		do {
-			quote = this.next();
-			index--;
-		} while (index > 0);
-
-		return quote;
+		return quotes[indexWrapAround(index)];
+	}
+	
+	int indexWrapAround(int index) {
+		return index % quotes.length;
 	}
 
 }
