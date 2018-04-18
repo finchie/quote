@@ -13,8 +13,8 @@ public class Quote {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Chuck Norris' tears cure cancer. Too bad he has never cried. Ever.");
+		Generator generator = new Generator();
+		System.out.println(generator.random());
 	}
 
 }
