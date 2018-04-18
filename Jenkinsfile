@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'if not exist bin mkdir bin'
-                bat 'javac -d bin -cp src src/uk/gov/snh/quote/Quote.java'
+                bat 'javac -d bin -cp src src/main/uk/gov/snh/quote/Quote.java'
             }
         }
         stage('Run') {
