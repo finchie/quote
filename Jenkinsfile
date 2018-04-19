@@ -1,17 +1,20 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') {
+       stage('Build') {
             steps {
-                bat 'if not exist bin mkdir bin'
-                bat 'javac -d bin -cp src/main src/main/uk/gov/snh/quote/Quote.java'
+                bat 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Run') {
+        stage('Test') {
             steps {
-                bat 'java -cp bin uk.gov.snh.quote.Quote'
+                bat 'mvn test'
             }
-
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
         }
 
     }
