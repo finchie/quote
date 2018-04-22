@@ -12,7 +12,7 @@ import java.util.Random;
 public class Generator {
 	
 	static final String[] quotes = {
-			"Chuck Norris' tears cure cancer. Too bad he has never cried. Ever.",
+			"Chuck Norris' tears cure cancer. Too bad he has never cried! Ever.",
 			"Chuck Norris does not sleep. He waits.",
 			"Chuck Norris is currently suing NBC, claiming Law and Order are trademarked names for his left and right legs.",
 			"The chief export of Chuck Norris is pain.",
